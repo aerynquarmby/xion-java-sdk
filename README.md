@@ -24,81 +24,81 @@ The Xion Java SDK offers developers an effortless way to integrate cryptocurrenc
 
 - Java 1.8 or later.
 - Maven for dependency management.
-- An API key, which can be obtained by registering as a merchant on [xionpay.app](https://xionpay.app) or via the API.
+- An API key, which can be obtained by registering as a merchant on [xionpay.app](https://xionpay.app) or via the [merchant API](https://www.apimatic.io/apidocs/xionglobal/v/2_0_0#/java/api-endpoints/merchant/register-sub-merchant).
 
 ## Installation
 
 1. Clone the repository:
-\```bash
+```bash
 git clone https://github.com/aerynquarmby/xion-java-sdk.git
-\```
+```
 
 2. Navigate to the project directory:
-\```bash
+```bash
 cd xion-java-sdk
-\```
+```
 
 3. Install the SDK to your local Maven repository:
-\```bash
+```bash
 mvn install
-\```
+```
 
 ## Configuration
 
 ### Authentication
 
 Authenticate your API requests using the API key from Xion:
-\```java
+```java
 GlobalConfiguration globalConfig = new GlobalConfiguration();
 globalConfig.setAuthenticationKey("YOUR_XION_API_KEY");
-\```
+```
 
 ### Environment Setup
 
 The SDK caters to both production and testnet/staging environments:
-\```java
+```java
 globalConfig.setEnvironment(Environment.PRODUCTION); // For production
 // OR
 globalConfig.setEnvironment(Environment.TESTNET); // For testnet/staging
-\```
+```
 
 ## Usage
 
 ### Single Billing API
 
 To execute a single bill payment:
-\```java
+```java
 DefaultSingleBillPaymentsController controller = new DefaultSingleBillPaymentsController(globalConfig);
 SingleBillPaymentRequest request = new SingleBillPaymentRequest();
 // Populate the request attributes
 SingleBillPaymentResponse response = controller.singleBillPayment(request);
-\```
+```
 
 ### Multi-Chain API
 
 The Multi-Chain API facilitates transactions across multiple blockchain networks. To utilize this:
-\```java
+```java
 DefaultMultiChainController multiChainController = new DefaultMultiChainController(globalConfig);
 // Use the methods provided by the controller for multi-chain operations
-\```
+```
 
 ### Order Code API
 
 After using the Single Billing API, you can verify an order's status:
-\```java
+```java
 String orderCode = "YOUR_ORDER_CODE";
 String status = controller.getOrderStatus(orderCode);
-\```
+```
 
 ### iFrame Integration
 
 For iFrame payments integration:
-\```java
+```java
 DefaultIframeController iframeController = new DefaultIframeController(globalConfig);
 IframeProductsRequest iframeRequest = new IframeProductsRequest();
 // Define the request attributes
 IframeProductsResponse iframeResponse = iframeController.getIframeProducts(iframeRequest);
-\```
+```
 
 ## Token Approvals
 
@@ -115,7 +115,7 @@ ThirdWeb offers a simplified way to set up token approvals:
 For manual setup using ethers.js:
 1. Install the ethers.js library.
 2. Interact with the USDT contract on Polygon to call the `approve` method, setting Xion's XGWallet as the spender.
-\```javascript
+```javascript
 const { ethers } = require('ethers');
 
 const provider = new ethers.providers.JsonRpcProvider(YOUR_RPC_URL);
@@ -125,7 +125,7 @@ const usdtContract = new ethers.Contract(USDT_CONTRACT_ADDRESS, USDT_ABI, signer
 const approveTx = await usdtContract.approve(XG_WALLET_ADDRESS, APPROVE_AMOUNT);
 
 await approveTx.wait();
-\```
+```
 Replace placeholders (`YOUR_RPC_URL`, `USDT_CONTRACT_ADDRESS`, `USDT_ABI`, `XG_WALLET_ADDRESS`, `APPROVE_AMOUNT`) with appropriate values.
 
 ## Support
