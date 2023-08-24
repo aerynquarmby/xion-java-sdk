@@ -130,7 +130,7 @@ Replace placeholders (`YOUR_RPC_URL`, `USDT_CONTRACT_ADDRESS`, `USDT_ABI`, `XG_W
 
 ## Support
 
-For inquiries or issues related to the Xion Java SDK, contact our [support team](mailto:support@xionpay.app).
+For inquiries or issues related to the Xion Java SDK, contact our [support team](mailto:contact@xion.global).
 
 ## Additional Resources
 
